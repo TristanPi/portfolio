@@ -1,0 +1,722 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Portfolio — Tristan Jaquier (Bubble)</title>
+    <meta name="description"
+        content="Bubble portfolio of Tristan Jaquier — marketplace, e-learning, Stripe, API, automations, AI." />
+
+    <style>
+        :root {
+            --bg: #0b0d10;
+            /* anthracite */
+            --panel: #11151b;
+            /* cards */
+            --panel2: #0f1318;
+            /* variants */
+            --line: rgba(255, 255, 255, .10);
+            --line2: rgba(255, 255, 255, .14);
+            --text: rgba(255, 255, 255, .92);
+            --muted: rgba(255, 255, 255, .68);
+            --soft: rgba(255, 255, 255, .06);
+            --soft2: rgba(255, 255, 255, .08);
+            --shadow: 0 16px 52px rgba(0, 0, 0, .55);
+            --radius: 18px;
+            --max: 1120px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            color: var(--text);
+            font: 16px/1.6 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+            background:
+                radial-gradient(900px 420px at 20% 0%, rgba(255, 255, 255, .06), transparent 60%),
+                radial-gradient(900px 520px at 80% 10%, rgba(255, 255, 255, .05), transparent 60%),
+                radial-gradient(1100px 700px at 55% 92%, rgba(255, 255, 255, .04), transparent 65%),
+                var(--bg);
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .wrap {
+            max-width: var(--max);
+            margin: 0 auto;
+            padding: 28px 18px 80px;
+        }
+
+        /* Topbar */
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 30;
+            backdrop-filter: blur(10px);
+            background: linear-gradient(to bottom, rgba(11, 13, 16, .92), rgba(11, 13, 16, .60));
+            border-bottom: 1px solid var(--line);
+        }
+
+        .topbar-inner {
+            max-width: var(--max);
+            margin: 0 auto;
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 950;
+            letter-spacing: .2px;
+            white-space: nowrap;
+        }
+
+        .mark {
+            width: 10px;
+            height: 10px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, .92);
+            box-shadow: 0 0 0 6px rgba(255, 255, 255, .06);
+            flex: 0 0 auto;
+        }
+
+        .nav {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            color: var(--muted);
+            font-weight: 850;
+        }
+
+        .nav a {
+            padding: 8px 10px;
+            border-radius: 12px;
+            transition: background .15s ease, color .15s ease;
+        }
+
+        .nav a:hover {
+            background: var(--soft);
+            color: var(--text);
+        }
+
+        .nav a.active {
+            background: var(--soft2);
+            color: var(--text);
+        }
+
+        /* Hero */
+        .hero {
+            margin-top: 22px;
+            border-radius: calc(var(--radius) + 8px);
+            border: 1px solid var(--line);
+            background:
+                radial-gradient(1100px 600px at 30% 10%, rgba(255, 255, 255, .06), transparent 55%),
+                linear-gradient(180deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .03));
+            box-shadow: var(--shadow);
+            padding: 26px;
+            display: grid;
+            grid-template-columns: 1.2fr .8fr;
+            gap: 18px;
+            overflow: hidden;
+        }
+
+        @media (max-width: 920px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        h1 {
+            margin: 0 0 10px;
+            font-size: 40px;
+            line-height: 1.1;
+            letter-spacing: -0.7px;
+        }
+
+        .lead {
+            text-align: justify;
+            text-justify: inter-word;
+            max-width: 70ch;
+        }
+
+        .hero-right {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .box {
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: rgba(0, 0, 0, .18);
+            padding: 14px;
+        }
+
+        .box h3 {
+            margin: 0 0 8px;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: .14em;
+            color: var(--muted);
+            font-weight: 950;
+        }
+
+        /* Chips */
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .chip {
+            padding: 7px 10px;
+            border-radius: 999px;
+            border: 1px solid var(--line2);
+            background: rgba(255, 255, 255, .04);
+            color: rgba(255, 255, 255, .86);
+            font-weight: 850;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+
+        /* Buttons */
+        .cta {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 10px 28px;
+            border-radius: 14px;
+            font-weight: 950;
+            border: 1px solid var(--line2);
+            background: rgba(255, 255, 255, .04);
+            cursor: pointer;
+            user-select: none;
+            transition: background .15s ease, filter .15s ease;
+        }
+
+        .btn:hover {
+            background: rgba(255, 255, 255, .07);
+        }
+
+        .btn.primary {
+            background: rgba(255, 255, 255, .92);
+            color: #0b0d10;
+            border-color: rgba(255, 255, 255, .92);
+        }
+
+        .btn.primary:hover {
+            filter: brightness(0.95);
+        }
+
+        /* Sections */
+        section {
+            margin-top: 30px;
+        }
+
+        .section-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .section-head h2 {
+            margin: 0;
+            font-size: 22px;
+            letter-spacing: -.3px;
+        }
+
+        .section-head p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        /* Projects (image left, text right) */
+        .project {
+            border: 1px solid var(--line);
+            background: linear-gradient(180deg, rgba(255, 255, 255, .05), rgba(255, 255, 255, .03));
+            border-radius: calc(var(--radius) + 8px);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1.1fr .9fr;
+            margin-bottom: 14px;
+        }
+
+        @media (max-width: 920px) {
+            .project {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .shot {
+            position: relative;
+            min-height: 300px;
+            background: var(--panel2);
+            border-right: 1px solid var(--line);
+        }
+
+        @media (max-width: 920px) {
+            .shot {
+                border-right: none;
+                border-bottom: 1px solid var(--line);
+                min-height: 220px;
+            }
+        }
+
+        /* Placeholder images (replace with your screenshots) */
+        .shot img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .shot .overlay {
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(90deg, rgba(11, 13, 16, .55), rgba(11, 13, 16, .15) 55%, rgba(11, 13, 16, .35)),
+                radial-gradient(900px 500px at 25% 20%, rgba(255, 255, 255, .08), transparent 60%);
+            pointer-events: none;
+        }
+
+        .shot .label {
+            position: absolute;
+            left: 14px;
+            bottom: 14px;
+            padding: 8px 10px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, .18);
+            background: rgba(0, 0, 0, .35);
+            color: rgba(255, 255, 255, .86);
+            font-weight: 950;
+            font-size: 13px;
+            letter-spacing: .02em;
+        }
+
+        .content {
+            padding: 18px 18px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .topline {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .title {
+            font-size: 20px;
+            font-weight: 950;
+            letter-spacing: -.2px;
+            margin: 0;
+        }
+
+        .meta {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            align-items: center;
+            color: var(--muted);
+            font-weight: 850;
+            font-size: 13px;
+        }
+
+        .badge {
+            padding: 6px 10px;
+            border-radius: 999px;
+            border: 1px solid var(--line2);
+            background: rgba(255, 255, 255, .04);
+            color: rgba(255, 255, 255, .82);
+            white-space: nowrap;
+        }
+
+        .desc {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        .actions {
+            margin-top: auto;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            padding-top: 10px;
+            border-top: 1px solid var(--line);
+            justify-content: flex-end;
+
+        }
+
+        /* Experience card */
+        .card {
+            border: 1px solid var(--line);
+            background: linear-gradient(180deg, rgba(255, 255, 255, .05), rgba(255, 255, 255, .03));
+            border-radius: calc(var(--radius) + 8px);
+            box-shadow: var(--shadow);
+            padding: 18px;
+        }
+
+        .card p {
+            margin: 0 0 12px;
+            color: var(--muted);
+            text-align: justify;
+        }
+
+        .card p:last-child {
+            margin-bottom: 0;
+        }
+
+        footer {
+            margin-top: 34px;
+            padding-top: 18px;
+            border-top: 1px solid var(--line);
+            color: var(--muted);
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        /* Tiny helper */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <main class="wrap">
+        <header class="hero">
+            <div>
+                <span class="mark"></span>
+                <h1>Tristan Jaquier – Bubble Developer with 7 Years of Experience</h1>
+                <h2>🇨🇭 Switzerland · Geneva · 38 years old</h2>
+                <p class="lead">
+
+                    I have been developing on bubble.io for 7 years. My first major project was a web platform for
+                    selling
+                    and managing courses (robotics and computer science for children, in-person), and I still work 20%
+                    for
+                    this company to keep improving the platform. In parallel, I designed and deployed several Bubble
+                    applications,
+                    including three major projects: a second-hand clothing marketplace (similar to Vinted), a gamified
+                    e-learning
+                    platform that I use in my office software courses, and an application to guide users toward a
+                    suitable therapy
+                    type and simulate sessions using AI based on the chosen approach.
+                </p>
+
+                <div class="cta">
+                    <a class="btn primary" href="#projects">View projects</a>
+                </div>
+
+            </div>
+
+            <div class="hero-right">
+                <div class="box">
+                    <h3>Bubble Skills</h3>
+                    <div class="chips">
+                        <span class="chip">UI/UX</span>
+                        <span class="chip">DB Architecture</span>
+                        <span class="chip">Workflows & backend</span>
+                        <span class="chip">Securtiy & privacy</span>
+
+                        <span class="chip">API & integrations</span>
+                        <span class="chip">Stripe</span>
+                        <span class="chip">AI</span>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <h3>Websites</h3>
+                    <div class="chips" id="siteChips"></div>
+                </div>
+            </div>
+        </header>
+
+        <section id="projects">
+            <div class="section-head">
+                <div>
+                    <h2>My projects built with Bubble</h2>
+                </div>
+            </div>
+
+            <div id="projectList"></div>
+        </section>
+
+
+
+        <footer>
+            <span>© <span id="year"></span> — Tristan Jaquier</span>
+        </footer>
+    </main>
+
+    <script>
+
+        // Placeholder images (replace with your screenshots)
+        // Use local images (e.g. ./img/futurekids.jpg) or URLs.
+
+        const images = {
+            "Futurekids.io": "img/Futurekids-illustration.jpeg",
+            "isage.ch": "img/isage-illustration.jpeg",
+            "swited.com": "img/swited-illustration.jpeg",
+            "Hopsy.ai": "img/hopsy-illustration.jpeg",
+        };
+
+        const placeholderImage = (label) => images[label] || "img/default.jpg";
+
+        const projects = [
+            {
+                name: "Futurekids.io",
+                year: "—",
+                url: "https://futurekids.io",
+                image: placeholderImage("Futurekids.io"),
+                description:
+                    "A complete multilingual web platform with a client e-commerce area (over CHF 1M/year in revenue) for purchasing children’s courses, an admin back office (orders, teachers, claims, reporting), and a teacher area (access to training, courses, student tracking).",
+                details:
+                    "Automations via the Telegram API (groups per activity) and transactional emails via Sendinblue (activity start, end of term, resources). Payments handled via Stripe with webhooks to automatically confirm successful payments and trigger validations within the application.",
+                features: [
+                    "Stripe", "Webhooks", "Telegram API", "Sendinblue",
+                    "Back-office", "Reporting", "User roles", "Multilingual"
+                ]
+            },
+            {
+                name: "isage.ch",
+                year: "—",
+                url: "https://isage.ch",
+                image: placeholderImage("isage.ch"),
+                description:
+                    "An e-learning platform to create classes, add students, publish activities, and track their progress.",
+                details:
+                    "A gamified learning path inspired by a Monopoly-style management game: students earn money/bonuses as they progress and can buy and upgrade “shops”. Used in real conditions with my students.",
+                features: [
+                    "LMS", "Class management", "Progress tracking",
+                    "Gamification", "Virtual economy", "Bonuses / rewards"
+                ]
+            },
+            {
+                name: "swited.com",
+                year: "—",
+                url: "https://swited.com",
+                image: placeholderImage("swited.com"),
+                description:
+                    "A second-hand clothing marketplace built on a model similar to Vinted.",
+                details:
+                    "Each seller can create and customize their page, publish items, and manage sales.",
+                features: [
+                    "Marketplace", "Seller profiles", "Custom pages",
+                    "Product catalog", "Purchase flow"
+                ]
+            },
+            {
+                name: "Hopsy.ai",
+                year: "—",
+                url: "https://hopsy.ai",
+                image: placeholderImage("Hopsy.ai"),
+                description:
+                    "A web app designed to help identify the most suitable psychological therapy approach.",
+                details:
+                    "An onboarding questionnaire followed by a chat with an AI specialized in the chosen approach, with a messaging-style UX.",
+                features: [
+                    "Questionnaire", "Scoring / matching", "Artificial intelligence",
+                    "AI chat", "Messaging-style UX"
+                ]
+            }
+        ];
+        // =========================
+
+        const el = (q) => document.querySelector(q);
+
+        function escapeHtml(str) {
+            return String(str).replace(/[&<>"']/g, s => ({
+                "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;"
+            }[s]));
+        }
+
+        function renderSiteChips() {
+            const wrap = el("#siteChips");
+            wrap.innerHTML = "";
+            projects.forEach(p => {
+                const a = document.createElement("a");
+                a.className = "chip";
+                a.href = p.url;
+                a.target = "_blank";
+                a.rel = "noreferrer";
+                a.textContent = p.name;
+                wrap.appendChild(a);
+            });
+        }
+
+        function projectHTML(p) {
+            return `
+        <article class="project">
+          <div class="shot">
+            <img src="${escapeHtml(p.image)}" alt="Preview — ${escapeHtml(p.name)}">
+            <div class="overlay"></div>
+          </div>
+
+          <div class="content">
+            <div class="topline">
+              <h3 class="title">${escapeHtml(p.name)}</h3>
+              <div class="meta">
+                ${p.year && p.year !== "—" ? `<span class="badge">${escapeHtml(p.year)}</span>` : ``}
+              </div>
+            </div>
+
+            <p class="desc">${escapeHtml(p.description || "")}</p>
+            <p class="desc">${escapeHtml(p.details || "")}</p>
+
+            <div class="chips" style="margin-top:4px;">
+              ${(p.features || []).map(f => `<span class="chip">${escapeHtml(f)}</span>`).join("")}
+            </div>
+
+            <div class="actions">
+              <a class="btn primary" href="${escapeHtml(p.url)}" target="_blank" rel="noreferrer">Open website</a>
+            </div>
+          </div>
+        </article>
+      `;
+        }
+
+        async function copyText(text) {
+            if (!text) return false;
+            try {
+                await navigator.clipboard.writeText(text);
+                return true;
+            } catch (e) {
+                // minimal fallback
+                try {
+                    const ta = document.createElement("textarea");
+                    ta.value = text;
+                    document.body.appendChild(ta);
+                    ta.select();
+                    document.execCommand("copy");
+                    ta.remove();
+                    return true;
+                } catch (_) {
+                    return false;
+                }
+            }
+        }
+
+        function toast(msg) {
+            // ultra simple toast
+            const t = document.createElement("div");
+            t.style.position = "fixed";
+            t.style.left = "50%";
+            t.style.bottom = "18px";
+            t.style.transform = "translateX(-50%)";
+            t.style.padding = "10px 12px";
+            t.style.borderRadius = "14px";
+            t.style.border = "1px solid rgba(255,255,255,.14)";
+            t.style.background = "rgba(0,0,0,.55)";
+            t.style.backdropFilter = "blur(10px)";
+            t.style.color = "rgba(255,255,255,.9)";
+            t.style.fontWeight = "900";
+            t.style.zIndex = "999";
+            t.textContent = msg;
+            document.body.appendChild(t);
+            setTimeout(() => t.remove(), 1400);
+        }
+
+        function setupCopyButtons() {
+            document.addEventListener("click", async (e) => {
+                const btn = e.target.closest("button[data-copy]");
+                if (!btn) return;
+                const val = btn.getAttribute("data-copy");
+                const ok = await copyText(val);
+                toast(ok ? "Link copied ✓" : "Copy failed");
+            });
+
+            el("#copyTopLinks").addEventListener("click", async () => {
+                const list = projects.map(p => `${p.name}: ${p.url}`).join("\n");
+                const ok = await copyText(list);
+                toast(ok ? "Links copied ✓" : "Copy failed");
+            });
+
+            el("#copyBtn").addEventListener("click", async () => {
+                if (!email) {
+                    toast("Add your email in the JS");
+                    return;
+                }
+                const ok = await copyText(email);
+                toast(ok ? "Email copied ✓" : "Copy failed");
+            });
+        }
+
+        function setupActiveNav() {
+            const links = Array.from(document.querySelectorAll(".nav a"));
+            const sections = links
+                .map(a => document.querySelector(a.getAttribute("href")))
+                .filter(Boolean);
+
+            const setActive = () => {
+                const y = window.scrollY + 140;
+                let current = sections[0]?.id || "";
+                for (const s of sections) {
+                    if (s.offsetTop <= y) current = s.id;
+                }
+                links.forEach(a => {
+                    const isActive = a.getAttribute("href") === `#${current}`;
+                    a.classList.toggle("active", isActive);
+                });
+            };
+
+            window.addEventListener("scroll", setActive, { passive: true });
+            setActive();
+        }
+
+        // Init
+        el("#year").textContent = new Date().getFullYear();
+        renderSiteChips();
+        el("#projectList").innerHTML = projects.map(projectHTML).join("");
+        setupCopyButtons();
+        setupActiveNav();
+    </script>
+</body>
+
+</html>
